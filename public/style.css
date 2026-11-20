@@ -1,0 +1,429 @@
+:root {
+  --hero-bg-1: #1c1410;
+  --hero-bg-2: #2b1d16;
+  --hero-bg-3: #140d0a;
+  --accent-amber: #f59e0b;
+  --accent-dark: #d97706;
+  --accent-light: #fbbf24;
+  --amber-pin: #f59e0b;
+  --surface-sheet: #ffffff;
+  --text-primary: #1c1917;
+  --text-secondary: #78716c;
+  --text-muted: #a8a29e;
+  --border-light: #e7e5e4;
+  --input-bg: #fafaf9;
+  --danger: #dc2626;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #1c1917;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+}
+
+.screen-canvas {
+  min-height: 100dvh;
+  width: 100%;
+  max-width: 460px;
+  background-color: var(--surface-sheet);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.45);
+}
+
+/* 1. Top Branded Hero */
+.hero-section {
+  position: relative;
+  background: linear-gradient(160deg, var(--hero-bg-1) 0%, var(--hero-bg-2) 55%, var(--hero-bg-3) 100%);
+  padding: max(18px, env(safe-area-inset-top)) 24px 46px;
+  flex: 1;
+  min-height: 44%;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.hero-map-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-brand-name {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.live-dispatch-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid rgba(251, 191, 36, 0.32);
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #fde68a;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-light);
+  box-shadow: 0 0 8px var(--accent-light);
+  animation: livePulse 2s infinite ease-in-out;
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.35);
+  }
+}
+
+.hero-center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto 0;
+  position: relative;
+  z-index: 2;
+}
+
+.emblem-wrap {
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  background: #ffffff;
+  padding: 6px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emblem-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 17px;
+  display: block;
+}
+
+.hero-headline {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.feature-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.feature-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fef3c7;
+}
+
+/* 2. Curved White Bottom Sheet */
+.bottom-sheet {
+  background-color: var(--surface-sheet);
+  border-radius: 28px 28px 0 0;
+  margin-top: -24px;
+  box-shadow: 0 -12px 40px rgba(28, 20, 16, 0.28);
+  padding: 14px 24px max(24px, env(safe-area-inset-bottom));
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  animation: sheetSlideUp 0.35s ease-out;
+}
+
+@keyframes sheetSlideUp {
+  from {
+    transform: translateY(22px);
+    opacity: 0.88;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.sheet-handle {
+  width: 38px;
+  height: 4px;
+  border-radius: 99px;
+  background-color: var(--border-light);
+  margin: 0 auto 18px;
+}
+
+.saved-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+}
+
+.saved-banner[hidden] {
+  display: none;
+}
+
+.saved-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.saved-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.saved-banner strong {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.btn-secondary {
+  border: none;
+  border-radius: 999px;
+  background-color: var(--accent-dark);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 15px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-secondary:active {
+  background-color: #b45309;
+}
+
+.sheet-intro {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.sheet-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.sheet-subtitle {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.sheet-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-container {
+  text-align: left;
+}
+
+.input-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #44403c;
+  margin-bottom: 8px;
+}
+
+.input-prefix-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-leading-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+#restaurant-code-input {
+  width: 100%;
+  height: 56px;
+  border-radius: 14px;
+  border: 1.5px solid var(--border-light);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: left;
+  padding: 0 16px 0 46px;
+  text-transform: uppercase;
+  outline: none;
+  transition: border-color 0.18s, background-color 0.18s, box-shadow 0.18s;
+}
+
+#restaurant-code-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.8px;
+}
+
+#restaurant-code-input:focus {
+  background-color: #ffffff;
+  border-color: var(--accent-dark);
+  box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.14);
+}
+
+.input-prefix-wrapper:focus-within .input-leading-icon {
+  color: var(--accent-dark);
+}
+
+.form-error {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--danger);
+  line-height: 1.4;
+  text-align: left;
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
+/* 3. CTA & Actions Area */
+.sheet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent-amber) 0%, var(--accent-dark) 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 10px 24px rgba(217, 119, 6, 0.30);
+  transition: transform 0.1s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.btn-arrow {
+  transition: transform 0.15s ease;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+}
+
+.btn-primary:active .btn-arrow {
+  transform: translateX(2px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px;
+  align-self: center;
+}
+
+.btn-link[hidden] {
+  display: none;
+}
+
+.sheet-footer-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 2px;
+}
